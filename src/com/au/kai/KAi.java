@@ -3868,7 +3868,7 @@ board.clearAnimation();
 					//valence = (lastvalues[b]>values[b]?lastvalues[b]-values[b]:values[b]-lastvalues[b]);
 
 					if(landscape == 1){
-
+//Log.i("ok","path a");
 						if(values[b] < 0 && values[b] < -1.5f){ 
 							if(values[b] < -3){bid.sendEmptyMessageDelayed(RIGHT,25);} 
 							if(values[b] < -4){bid.sendEmptyMessageDelayed(RIGHT,125);} 
@@ -3880,7 +3880,10 @@ board.clearAnimation();
 							bid.sendEmptyMessage(LEFT); }
 
 					}else if(landscape == 2){
-						b = 1;
+					//	Log.i("ok","path b");
+						
+						b = 0;
+						values[b] *= -1;
 
 						if(values[b] < 0 && values[b] < -1.5f){ 
 							if(values[b] < -3){bid.sendEmptyMessageDelayed(LEFT,25);} 
