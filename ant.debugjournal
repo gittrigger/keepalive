@@ -1,0 +1,60 @@
+start Wed Dec 12 09:01:28 2012
+Buildfile: /Users/havenskys/Desktop/Dull/KAi/build.xml
+
+-set-mode-check:
+
+-set-debug-files:
+
+-set-debug-mode:
+
+-debug-obfuscation-check:
+
+-setup:
+     [echo] Gathering info for KAI...
+    [setup] Android SDK Tools Revision 15
+    [setup] Project Target: Android 4.1.2
+    [setup] API level: 16
+    [setup] 
+    [setup] ------------------
+    [setup] Resolving library dependencies:
+    [setup] No library dependencies.
+    [setup] 
+    [setup] ------------------
+    [setup] 
+    [setup] WARNING: Attribute minSdkVersion in AndroidManifest.xml (7) is lower than the project target API level (16)
+
+-build-setup:
+     [echo] Creating output directories if needed...
+
+-pre-build:
+
+-code-gen:
+     [echo] ----------
+     [echo] Handling aidl files...
+     [aidl] Found 1 aidl files.
+     [aidl] No aidl files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+[renderscript] No renderscript files to compile.
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] No changed resources. R.java and Manifest.java untouched.
+
+-pre-compile:
+
+-compile:
+    [javac] /sdk/android-sdk-macosx/tools/ant/build.xml:600: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 1 source file to /Users/havenskys/Desktop/Dull/KAi/bin/classes
+    [javac] /Users/havenskys/Desktop/Dull/KAi/src/com/au/kai/KAi.java:777: unclosed string literal
+    [javac] 				Log.w("ok","ALARM       --     jumpdstep > reasonable: " + jumpdstep");
+    [javac]                                                                                                     ^
+    [javac] /Users/havenskys/Desktop/Dull/KAi/src/com/au/kai/KAi.java:778: ';' expected
+    [javac] 			}
+    [javac]                         ^
+    [javac] 2 errors
+
+BUILD FAILED
+/sdk/android-sdk-macosx/tools/ant/build.xml:580: The following error occurred while executing this line:
+/sdk/android-sdk-macosx/tools/ant/build.xml:600: Compile failed; see the compiler error output for details.
+
+Total time: 1 second

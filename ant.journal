@@ -1,0 +1,91 @@
+-starting (46 sec since last): Fri Jan  4 15:16:35 2013
+Buildfile: /Users/havenskys/Desktop/dull/KAI/build.xml
+
+-set-mode-check:
+
+-set-debug-files:
+
+-set-debug-mode:
+
+-debug-obfuscation-check:
+
+-setup:
+     [echo] Gathering info for KAI...
+    [setup] Android SDK Tools Revision 15
+    [setup] Project Target: Android 4.1.2
+    [setup] API level: 16
+    [setup] 
+    [setup] ------------------
+    [setup] Resolving library dependencies:
+    [setup] No library dependencies.
+    [setup] 
+    [setup] ------------------
+    [setup] 
+    [setup] WARNING: Attribute minSdkVersion in AndroidManifest.xml (7) is lower than the project target API level (16)
+
+-build-setup:
+     [echo] Creating output directories if needed...
+
+-pre-build:
+
+-code-gen:
+     [echo] ----------
+     [echo] Handling aidl files...
+     [aidl] Found 1 aidl files.
+     [aidl] No aidl files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+[renderscript] No renderscript files to compile.
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found new input file
+     [aapt] Generating resource IDs...
+     [aapt]     (skipping file '.DS_Store' due to ANDROID_AAPT_IGNORE pattern '.*')
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 2 source files to /Users/havenskys/Desktop/dull/KAI/bin/classes
+    [javac] Note: /Users/havenskys/Desktop/dull/KAI/src/com/au/kai/KAi.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+      [dex] Found modified input file
+      [dex] Converting compiled files and external libraries into /Users/havenskys/Desktop/dull/KAI/bin/classes.dex...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: /Users/havenskys/Desktop/dull/KAI/res
+   [crunch] To destination dir: /Users/havenskys/Desktop/dull/KAI/bin/res
+   [crunch] Crunched 0 PNG files to update cache
+
+-package-resources:
+     [aapt] Found new input file
+     [aapt] Creating full resource package...
+     [aapt]     (skipping file '.DS_Store' due to ANDROID_AAPT_IGNORE pattern '.*')
+
+-package:
+[apkbuilder] Found modified input file
+[apkbuilder] Creating KAI-debug-unaligned.apk and signing it with a debug key...
+
+-do-debug:
+ [zipalign] Running zip align on final apk...
+     [echo] Debug Package: /Users/havenskys/Desktop/dull/KAI/bin/KAI-debug.apk
+
+debug:
+[propertyfile] Updating property file: /Users/havenskys/Desktop/dull/KAI/bin/build.prop
+[propertyfile] Updating property file: /Users/havenskys/Desktop/dull/KAI/bin/build.prop
+[propertyfile] Updating property file: /Users/havenskys/Desktop/dull/KAI/bin/build.prop
+[propertyfile] Updating property file: /Users/havenskys/Desktop/dull/KAI/bin/build.prop
+
+BUILD SUCCESSFUL
+Total time: 18 seconds
+-uninstall then installing on HT17LTB02912: 
+-uninstall but save: 
+-updating (KAI-debug): 
+-start Keep Alive: 
+-scan complete: 
+-Keep Alive: 
