@@ -189,63 +189,14 @@ public class KAi extends Activity {
 		base = (RelativeLayout) findViewById(R.id.base);
 		bm = (RelativeLayout) findViewById(R.id.bm);
 
-//		mGLView = (GLSurfaceView) findViewById(R.id.br);
-
-		//Log.i("ok", "CREATE");
-Log.i("ok","CREATE " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth());
-//Toast.makeText(ctx,"CREATE " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth(), 4880).show();
-
-
-		//mGLView = new GLSurfaceView(this);
-
-		//bm.setVisibility(View.INVISIBLE);
-		//if(mGLView == null){Log.e("ok","gl hidden");}
-		//mGLView.setVisibility(View.VISIBLE);
-
-		//bm = (RelativeLayout) getView("RelativeLayout");
-		//bm.setLayoutParams(getRelativeLayout(-1, -1));
-		//setContentView(bm);
-      		//<android.opengl.GLSurfaceView android:id="@+id/br" android:layout_width="fill_parent" android:layout_height="fill_parent" android:drawingCacheQuality="high" android:visibility="invisible" />
-
 // fonts
 		face = new Typeface[3];
 		face[0] = Typeface.createFromAsset(getAssets(), "Roboto-Black.ttf");
 		face[1] = Typeface.createFromAsset(getAssets(), "Roboto-Regular.ttf");
 		face[2] = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
-		//Intent service2 = new Intent();
-                //service2.setClass(ctx, com.au.boston.Grip.class);
-                //bindService(service2, serBind, Context.BIND_AUTO_CREATE);
-
-
-                //LinearLayout sl = (LinearLayout) getView("LinearLayout");
-
-// create 3d thingso
-		if(mgl && 1==2){
-//drawLine
-		//	ogl h2 = new ogl(new World());
-		//	mWorlds[0] = h2.mw;
-// 3525
-		//	mWorlds[1] = mkWorld();
-
-
-		//mWorlds[2] = mkSensor();
-		//mWorlds[3] = mkService();
-
-
-
-
-
-		//LightSense.sendEmptyMessage(1);
-
-
-
-//*/
-		}
-
-
-
 		startParts.sendEmptyMessage(1);
+		
 	}
 	int pRate = 72;
 
@@ -257,20 +208,8 @@ Log.i("ok","CREATE " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth
 
 
 
-	Handler serviceAnimation = new Handler() {
-		@Override
-		public void handleMessage(Message msg) {
-			Bundle bdl = msg.getData();
-
-			int t = mServiceo;
-
-			//Cursor g2 = null;
-			//g2 = SqliteWrapper.query(ctx, getContentResolver(), Uri.parse(Tumbler.CONTENT_URI.toString() + "/filter"), new String[] { "_id" }, "status > 0", null, "filtered desc");
-			//if (g2 != null) { if (g2.moveToFirst()) { } g2.close(); }
-
-		}
-	};
-
+	
+	
 	int mServiceo = -1;
 
 
@@ -298,7 +237,7 @@ Log.i("ok","CREATE " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth
 			vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
 			// banner ads
-			mAds = new InAds(getMainLooper(), bm);
+			//mAds = new InAds(getMainLooper(), bm);
 
 			// Game Board
 			mGame = new GameBoard(getMainLooper(), bm);
@@ -318,7 +257,7 @@ Log.i("ok","CREATE " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth
 				playaudio.sendMessageDelayed(mu, 20);
 			}
 
-			if(1==1){
+			if(1==2){
 				Bundle b8 = new Bundle();
 				//b8.putString("path", "music1.mp3");
 				b8.putString("path", "01 - Erik Friend - Interstellar.mp3");
@@ -332,7 +271,7 @@ Log.i("ok","CREATE " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth
 				//playaudio2.sendMessageDelayed(m8, 1750);
 			}
 
-			new GetAudio().execute();
+		//	new GetAudio().execute();
 
 	//		bort.sendEmptyMessageDelayed(2,2112);
 
@@ -2007,7 +1946,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 			if( nearBy(cl,ct,25f) ){
 				p9.setStyle(Style.STROKE);
 				p9.setColor(mGame.my9[runx.nextInt(mGame.my9.length - 1)]);
-				cnkh.drawCircle((float)(cl), (float)(ct), (float)(25f), p9);
+				cnkh.drawCircle((float)(cl), (float)(ct), (float)(55f), p9);
 			}
 
 			if( nearBy(cl,ct,15f) ){
@@ -2015,7 +1954,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 
 				p9.setStyle(Style.STROKE);
 				p9.setColor(mGame.my9[runx.nextInt(mGame.my9.length - 1)]);
-				cnkh.drawCircle((float)(cl), (float)(ct), (float)(15f), p9);
+				cnkh.drawCircle((float)(cl), (float)(ct), (float)(35f), p9);
 			}
 		}
 
@@ -2027,7 +1966,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 			if(cnkh != null){
 				p9.setColor(mGame.my9a[runx.nextInt(mGame.my9a.length - 1)]);
 				p9.setStyle(Style.FILL);
-				cnkh.drawCircle((float)(cl), (float)(ct), (float)(5f), p9);
+				cnkh.drawCircle((float)(cl), (float)(ct), (float)(15f), p9);
 			}
 
 			mGame.changeLevel( nextlevel );
@@ -2037,7 +1976,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 			return true;
 		}
 
-		if(nearBy(cl,ct,25f) ){
+		if(nearBy(cl,ct,35f) ){
 			if(cnkh != null){
 				ink.postInvalidate();
 			}
@@ -2061,10 +2000,10 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 			movemeiphands = 0;
 
 			if(pathat == DOWN || pathat == UP){
-				movemeip = (int) ((left + see.getWidth() / 2) + ((top + see.getHeight()) - 15 + movemestep ) * mGame.bnk[mGame.level].getWidth());
+				movemeip = (int) ((left + see.getWidth() / 2) + ((top + see.getHeight()) - 5 + movemestep ) * mGame.bnk[mGame.level].getWidth());
 				movemeiphands = (int) ((left + see.getWidth() / 2) + (top + see.getHeight()/2 + movemestep ) * mGame.bnk[mGame.level].getWidth());
 			}else{
-				movemeip = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()) - 15) * mGame.bnk[mGame.level].getWidth()); 
+				movemeip = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()) - 5) * mGame.bnk[mGame.level].getWidth()); 
 				movemeipright = (int) ((left + see.getWidth() / 2) + 15 + movemestep + ((top + see.getHeight()) - 15) * mGame.bnk[mGame.level].getWidth()); 
 				movemeipleft = (int) ((left + see.getWidth() / 2) - 15 + movemestep + ((top + see.getHeight()) - 15) * mGame.bnk[mGame.level].getWidth()); 
 				movemeiphands = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()/2) - 5) * mGame.bnk[mGame.level].getWidth()); 
@@ -2102,13 +2041,13 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 				double cl = basesize-see.getWidth()/2;
 				double ct = basesize-see.getHeight()*1.5;
 
-				if( portalLevel(cl,ct, mGame.level + 1) ){ return; }
+		//		if( portalLevel(cl,ct, mGame.level + 1) ){ return; }
 			}
 
 			if(mGame.level > 0){
 				double cl = see.getWidth()/2;
 				double ct = basesize-see.getHeight()*1.5;
-				if( portalLevel(cl,ct, mGame.level - 1) ){ return; }
+			//	if( portalLevel(cl,ct, mGame.level - 1) ){ return; }
 			}
 
 			if(see == null){
@@ -3909,9 +3848,9 @@ board.clearAnimation();
 					}
 					valence = (lastvalues[b]>values[b]?lastvalues[b]-values[b]:values[b]-lastvalues[b]);
 
-					if(lastvalues[b] > values[b] && valence > 2.0f){ 
+					if(lastvalues[b] > values[b] && valence > 4.0f){ 
 					//values[b] < -4f && values[b] > -9f)
-						if(valence > 4){bid.sendEmptyMessageDelayed(DOWN,25);} 
+						if(valence > 6){bid.sendEmptyMessageDelayed(DOWN,25);} 
 						//if(valence > 6){bid.sendEmptyMessageDelayed(DOWN,125);} 
 						bid.sendEmptyMessage(DOWN); 
 						smooth = SystemClock.uptimeMillis() + 170;
@@ -4051,7 +3990,7 @@ board.setOnTouchListener(new OnTouchListener(){
 
 	public boolean onTouch(View b, MotionEvent a) {
 		if ( a.getAction() == a.ACTION_DOWN) {
-			//Toast.makeText(ctx,"Show Player "+myn+" Stats Here " +us[myn].left+" : "+us[myn].see.getLeft(),1880).show();
+			Toast.makeText(ctx,"Show Player "+myn+" Stats Here " +us[myn].left+" : "+us[myn].see.getLeft(),1880).show();
 			//us[myn].
 			bid.sendEmptyMessage(JUMPUP);
 
@@ -4089,7 +4028,7 @@ Log.i("ok","SENSOR ONLINE");
 				sm.registerListener(or, sm.getDefaultSensor(SensorManager.SENSOR_ORIENTATION) , SensorManager.SENSOR_DELAY_GAME );
 			}
 
-			//controlPad();
+			controlPad();
 			changeLevel( level + 1 );
 		}
 
@@ -4340,11 +4279,11 @@ Log.i("ok","SENSOR ONLINE");
 									}
 
 									if(us[myn].left + us[myn].see.getWidth()/2 < bnk[level].getWidth() / 3 ){//bnk.getWidth
-										//zoomHere(4);
+										zoomHere(4);
 									}else{
 									}
 									if(us[myn].left + us[myn].see.getWidth()/2 < bnk[level].getWidth() - bnk[level].getWidth() / 3 ){//bnk.getWidth
-										//zoomHere(2);
+										zoomHere(2);
 									}
 								} else if (sx > b.getWidth() - b.getWidth() / 3) {
 									bid.sendEmptyMessage(RIGHT);
@@ -4357,9 +4296,9 @@ Log.i("ok","SENSOR ONLINE");
 										ij.setBackgroundResource(R.drawable.dirright);
 									}
 									if(us[myn].left + us[myn].see.getWidth()/2 > bnk[level].getWidth() - bnk[level].getWidth() / 3 ){//bnk.getWidth
-										//zoomHere(4);
+										zoomHere(4);
 									}else{
-										//zoomHere(2);
+										zoomHere(2);
 									}
 								} 
 
@@ -4402,7 +4341,7 @@ Log.i("ok","SENSOR ONLINE");
 
 									bid.sendEmptyMessageDelayed(JUMPUP,2);
 
-//zoomHere(4);
+zoomHere(4);
 
 									if ( lastd != -1) {
 										lastd = -1;
@@ -4417,7 +4356,7 @@ Log.i("ok","SENSOR ONLINE");
 								// a.getActionIndex());
 								// new bjhide().execute();
 								// dpadset.sendEmptyMessage(0);
-//zoomHere(4);
+zoomHere(4);
 
 								if (lastd != -1) {
 									lastd = -1;
@@ -4486,16 +4425,16 @@ Log.i("ok","SENSOR ONLINE");
 
 						// dropCoin
 
-						//mGame.changeLevel( mGame.level + 1 );
-
+						
 					}
 
 //zoomHere(5);
 //Toast
 Toast.makeText(ctx,"Huray "+myn+" " +us[myn].left + "\nTODO: music, boom\nMan you're good.\n\n" + mGame.level ,1880).show();
 
-
-pulseColor.sendEmptyMessageDelayed(2,175);
+						mGame.changeLevel( mGame.level + 1 );
+						
+//pulseColor.sendEmptyMessageDelayed(2,175);
 
 
 
@@ -4611,6 +4550,8 @@ public void handleMessage(Message mg){
 
 Bitmap[] coinb = new Bitmap[15];
 Canvas[] coinc = new Canvas[15];
+		int[] cointb = new int[15];
+		int[] coinrl = new int[15];
 int[] coinl = new int[15];
 int[] coint = new int[15];
 ImageView[] coini = new ImageView[15];
@@ -4634,6 +4575,8 @@ public void dropCoin( int left, int top, int right, int bottom) {
 	coinr[coinn].setMargins(left,top, right, bottom);
 	coinl[coinn] = left;
 	coint[coinn] = top;
+	coinrl[coinn] = LEFT;
+	cointb[coinn] = DOWN;
 	coin.setLayoutParams(coinr[coinn]);
 	coin.setScaleType(ScaleType.MATRIX);
 	//coin.setImageResource(R.drawable.coin);
@@ -4725,26 +4668,44 @@ public void dropCoin( int left, int top, int right, int bottom) {
 
 
 		if(coini[coinn] != null && coini[coinn].getVisibility() == View.VISIBLE){
-			coinh.sendEmptyMessageDelayed(coinn,825);
+			coinh.sendEmptyMessageDelayed(coinn,75);
 
 			
 			coinr[coinn].setMargins( coinl[coinn], coint[coinn] , 0, 0);
-			coinl[coinn] += runx.nextInt(14) - runx.nextInt(18);
-			coint[coinn] += runx.nextInt(2) - runx.nextInt(2);
-
+			if( coinrl[coinn] == LEFT ){
+				coinl[coinn] -= runx.nextInt(34);
+			}else{
+				coinl[coinn] += runx.nextInt(34);
+			}
+			if( cointb[coinn] == DOWN ){
+				coint[coinn] += runx.nextInt(24);
+			}else{
+				coint[coinn] -= runx.nextInt(24);
+			}
+//			coinl[coinn] += runx.nextInt(14) - runx.nextInt(18);
+//			coint[coinn] += runx.nextInt(2) - runx.nextInt(2);
+			
+			
 			if(bnk != null){
 
 				if(coinl != null && coint != null && coinb != null && coini != null){
 
-					if(	coinn < coinl.length && coinn < coinb.length && level > 0 && level < bnk.length
+					if( coinn < coinl.length && coinn < coinb.length && level > 0 && level < bnk.length
 
-						&& coinl[coinn] > 0 && coinl[coinn] < bnk[level].getWidth()-coini[coinn].getWidth() 
+						&& coinl[coinn] > 0+55 && coinl[coinn] < bnk[level].getWidth() - coini[coinn].getWidth() - 55
 
-						&& coint[coinn] > 0 && coint[coinn] + coinb[coinn].getHeight() < basesize
+						&& coint[coinn] > 0+115 && coint[coinn] + coinb[coinn].getHeight() + 115 < basesize
 						){
 						//&& coint[coinn] > 0 && coint[coinn] + coinb[coinn].getHeight() < bm.getHeight()/2 
 				
 						coini[coinn].setLayoutParams(coinr[coinn]);
+					}else{
+						if( coinl[coinn] > 0+55 && coinl[coinn] < bnk[level].getWidth() - coini[coinn].getWidth() - 55 ){
+							if(cointb[coinn] == DOWN){cointb[coinn] = UP;}else{cointb[coinn] = DOWN;}
+						}else{
+							if(coinrl[coinn] == LEFT){coinrl[coinn] = RIGHT;}else{coinrl[coinn] = LEFT;}
+						}
+
 					}
 
 					coini[coinn].postInvalidate();
@@ -4905,7 +4866,7 @@ try {
 
 					sj = (ImageView) getView("ImageView");
 					RelativeLayout.LayoutParams sl = getRelativeLayout(-2, -2);
-					sl.setMargins(0, nnk.getHeight() / 2 + 8, 0, 0);
+					sl.setMargins(0, 8, 0, 0);
 					sj.setLayoutParams(sl);
 					sj.setScaleType(ScaleType.MATRIX);
 					sj.setImageBitmap(nnk);
@@ -4987,7 +4948,7 @@ try {
 
 						RectF rect = new RectF();
 						p9.setColor(my9a[runx.nextInt(my9a.length - 1)]);
-						p9.setStrokeWidth(8f);
+						p9.setStrokeWidth(18f);
 						p9.setAntiAlias(true);
 						p9.setStyle(Style.STROKE);
 
@@ -5127,9 +5088,9 @@ try {
 						p9.setColor(my9a[runx.nextInt(my9a.length - 1)]);
 						rect.set(
 								(int) (bnk[level].getWidth() / 2 + bnk[level].getWidth() / 8),
-								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 14 * 2),
+								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 28 * 5),
 								(int) (bnk[level].getWidth() / 2 + bnk[level].getWidth() / 8 * 2),
-								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 14));
+								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 14 * 2));
 						cnk[level].drawRoundRect(rect, 12, 12, p9);
 
 						p9.setColor(my9a[runx.nextInt(my9a.length - 1)]);
@@ -5143,9 +5104,9 @@ try {
 						p9.setColor(my9a[runx.nextInt(my9a.length - 1)]);
 						rect.set(
 								(int) (bnk[level].getWidth() / 2 - bnk[level].getWidth() / 8),
-								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 14 * 4),
+								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 28 * 5),
 								(int) (bnk[level].getWidth() / 2 - 0),
-								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 14 * 3));
+								(int) (bnk[level].getHeight() - bnk[level].getHeight() / 14 * 2));
 						cnk[level].drawRoundRect(rect, 12, 12, p9);
 
 
@@ -5538,8 +5499,8 @@ try {
 						// HandlerThread mx = new HandlerThread("ok",
 						// Thread.NORM_PRIORITY);
 
-						us[n] = new GamePlayer((int) ((board.getWidth() * (.10 * .25) * 5) - n * 75 * .25 + (n == 1 ? 250 * .25 : (n >= 3 ? -75 * .25 : 0))),
-								(int) (board.getHeight() * .2 ), m,
+						us[n] = new GamePlayer((int) (101+ n * 101 * .15 ),
+								(int) (board.getHeight() * .8 ), m,
 								getMainLooper());
 
 
@@ -5663,36 +5624,6 @@ if (level < 4) {
 	}
 
 
-
-	// SwarmCloud mSwarm;
-	/*
-	 * / private class SwarmCloud extends Handler implements SwarmLoginListener
-	 * {
-	 * 
-	 * public SwarmCloud(Looper looper) { super(looper); }
-	 * 
-	 * public void loginCanceled() { Log.i("ok", "Swarm Login Canceled"); }
-	 * 
-	 * public void loginStarted() { Log.i("ok", "Swarm Login Started"); }
-	 * 
-	 * public void userLoggedIn(SwarmActiveUser user) { Log.i("ok",
-	 * "Swarm Login " + Swarm.isLoggedIn()); // edt.putBoolean("swarmlogin",
-	 * true); // edt.commit();
-	 * 
-	 * }
-	 * 
-	 * public void userLoggedOut() { Log.i("ok", "Swarm Logout"); }
-	 * 
-	 * }
-	 * 
-	 * Handler swarmInit = new Handler() { public void handleMessage(Message
-	 * msg) { // edt.putBoolean("swarminit", true); // edt.commit();
-	 * 
-	 * mSwarm = new SwarmCloud(getMainLooper()); Swarm.init(axt, 524,
-	 * getString(R.string.swarm_id), mSwarm);
-	 * 
-	 * } }; //
-	 */
 
 	Handler vib = new Handler() {
 		public void handleMessage(Message msg) {
