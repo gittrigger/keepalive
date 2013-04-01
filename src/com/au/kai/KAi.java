@@ -219,6 +219,8 @@ public class KAi extends Activity {
 
 
 	int sizebase = 120;
+	int sizebasewidth = 120;
+	int sizebaseheight = 120;
 	//int landscape = -1;
 	Handler startParts = new Handler() {
 		public void handleMessage(Message msg) {
@@ -231,6 +233,8 @@ public class KAi extends Activity {
 				//landscape = 1;
 				sizebase = sd.getWidth();
 			}
+			sizebasewidth = sd.getWidth();
+			sizebaseheight = sd.getHeight();
 
 			//Toast.makeText(ctx,"START " + sizebase + " " + (int)(base.getWidth()) +" "+ bm.getWidth(), 4880).show();
 //Screen
@@ -890,7 +894,8 @@ public class KAi extends Activity {
 		public int top = 0;
 		public int color = Color.BLACK;
 		Context ctx;
-
+		public int sizebasewidth = 120;
+		public int sizebaseheight = 120;
 		public GamePlayer(int mleft, int mtop, String m, Looper clooper) {
 			super(clooper);
 			Log.i("ok", "Starting " + m + "  @(" + left + "," + top + ")");
@@ -900,6 +905,8 @@ public class KAi extends Activity {
 			}else{
 				basesize = bm.getWidth();
 			}
+			sizebasewidth = bm.getWidth();
+			sizebaseheight = bm.getHeight();
 
 			who = m;
 			here = new RelativeLayout.LayoutParams(-2, -2);
@@ -913,7 +920,7 @@ public class KAi extends Activity {
 			see.setLayoutParams(here);
 			see.setScaleType(ScaleType.MATRIX);
 			see.setImageBitmap(b9);
-			//mGame.board.addView(see);
+			//mGame.addView(see);
 
 			if(mGame.level >= 0){
 				if(mGame.level < mGame.pk.length && mGame.pk[mGame.level] != null ){ 
@@ -950,12 +957,12 @@ public class KAi extends Activity {
 				try {
 
 				Log.i("ok","Smoke Next create dust image");
-				hnk = Bitmap.createBitmap(basesize, basesize, Bitmap.Config.ARGB_8888);
+				hnk = Bitmap.createBitmap(sizebasewidth, sizebaseheight, Bitmap.Config.ARGB_8888);
 				cnkh = new Canvas(hnk);
 				ink = (ImageView) getView("ImageView");
 //drawRoundRect
 				RelativeLayout.LayoutParams br = getRelativeLayout(-2, -2);
-				br.addRule(RelativeLayout.CENTER_IN_PARENT, -1);
+				br.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, -1);
 				//br.addRule(RelativeLayout.ALIGN_PARENT_TOP, -1);
 				ink.setLayoutParams(br);
 				ink.setScaleType(ScaleType.MATRIX);
@@ -1702,12 +1709,12 @@ powder();
 
 
 			//if(top + jumpdstep < mGame.bm.getHeight()/2){
-			if(top + jumpdstep < basesize){
+			if(top + jumpdstep < sizebaseheight){
 				top += jumpdstep;
 			}else{
 				//Log.w("ok","ALARM       --     jumpdstep > reasonable: " + jumpdstep + ">"+(mGame.bm.getHeight()/2) );
-				Log.w("ok","ALARM       --     jumpdstep > reasonable: " + jumpdstep + ">"+ basesize );
-				top = basesize - jumpdstep - see.getHeight() - 5;
+				Log.w("ok","ALARM       --     jumpdstep > reasonable: " + jumpdstep + ">"+ sizebaseheight );
+				top = sizebaseheight - jumpdstep - see.getHeight() - 5;
 				//top = mGame.bm.getHeight()/2 - jumpdstep - see.getHeight() - 5;
 			}
 
@@ -1877,7 +1884,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 	cnkh.drawCircle((float)(cl), (float)(ct), (float)(radius), p9);
 	atval = val;
 //animate
-}else if(pl < (basesize * .25)  ){
+}else if(pl < (sizebasewidth * .25)  ){
 //else if(pl < (bm.getWidth() * .25)  )
 	//mPurpose[1].setPivot((float)ct+110f,(float)(cl*-1f)-565f,-535f);
 
@@ -1959,7 +1966,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 		}
 
 		if(nearBy(cl,ct,5f) ){
-			left = (int)(basesize -  see.getWidth() - see.getWidth()/2 );
+			left = (int)(sizebasewidth -  see.getWidth() - see.getWidth()/2 );
 			here.setMargins(left, top, 0, 0);
 			us[0].see.setLayoutParams(here);
 
@@ -2000,13 +2007,13 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 			movemeiphands = 0;
 
 			if(pathat == DOWN || pathat == UP){
-				movemeip = (int) ((left + see.getWidth() / 2) + ((top + see.getHeight()) - 5 + movemestep ) * mGame.bnk[mGame.level].getWidth());
+				movemeip = (int) ((left + see.getWidth() / 2) + ((top + see.getHeight()) - 15 + movemestep ) * mGame.bnk[mGame.level].getWidth());
 				movemeiphands = (int) ((left + see.getWidth() / 2) + (top + see.getHeight()/2 + movemestep ) * mGame.bnk[mGame.level].getWidth());
 			}else{
-				movemeip = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()) - 5) * mGame.bnk[mGame.level].getWidth()); 
+				movemeip = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()) - 15) * mGame.bnk[mGame.level].getWidth()); 
 				movemeipright = (int) ((left + see.getWidth() / 2) + 15 + movemestep + ((top + see.getHeight()) - 15) * mGame.bnk[mGame.level].getWidth()); 
 				movemeipleft = (int) ((left + see.getWidth() / 2) - 15 + movemestep + ((top + see.getHeight()) - 15) * mGame.bnk[mGame.level].getWidth()); 
-				movemeiphands = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()/2) - 5) * mGame.bnk[mGame.level].getWidth()); 
+				movemeiphands = (int) ((left + see.getWidth() / 2) + movemestep + ((top + see.getHeight()/2) - 15) * mGame.bnk[mGame.level].getWidth()); 
 			}
 
 			if(!injump && movemeip > 0 && mGame.pnk[mGame.level].length > movemeip && movemeiphands > 0 && movemeiphands < mGame.pnk[mGame.level].length){
@@ -2038,16 +2045,16 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 				//double cl = mGame.bm.getWidth()-see.getWidth();
 				//double ct = mGame.bm.getHeight()/2-see.getHeight()*1.5;
 
-				double cl = basesize-see.getWidth()/2;
-				double ct = basesize-see.getHeight()*1.5;
+				double cl = sizebasewidth-see.getWidth()/2;
+				double ct = sizebaseheight-see.getHeight()*1.5;
 
 		//		if( portalLevel(cl,ct, mGame.level + 1) ){ return; }
 			}
 
-			if(mGame.level > 0){
+			if(1==2 && mGame.level > 0){
 				double cl = see.getWidth()/2;
-				double ct = basesize-see.getHeight()*1.5;
-			//	if( portalLevel(cl,ct, mGame.level - 1) ){ return; }
+				double ct = sizebaseheight-see.getHeight()*1.5;
+				if( portalLevel(cl,ct, mGame.level - 1) ){ return; }
 			}
 
 			if(see == null){
@@ -2093,7 +2100,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 				||
 				(
 					movemeip > 0 && movemeip < mGame.pnk[mGame.level].length && mGame.pnk[mGame.level][movemeip] != 0 
-					&& (!moveinmud && !injump && (pathat != DOWN && pathat != UP ) && top+see.getHeight()-5 < basesize )
+					&& (!moveinmud && !injump && (pathat != DOWN && pathat != UP ) && top+see.getHeight()-5 < sizebaseheight )
 				)
 			 ) {
 				//&& (!moveinmud && !injump && (pathat != DOWN && pathat != UP ) && top+see.getHeight()-5 < mGame.bm.getHeight()/2 )
@@ -2134,7 +2141,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 					top += movemestep;
 					movemeip = (int) ((left + see.getWidth() / 2) + ((top + see.getHeight()) - 5 + movemestep ) * mGame.bnk[mGame.level].getWidth());
 					//if( top + see.getHeight() - 5 + movemestep < mGame.bm.getHeight() / 2 && top + movemestep > 0){
-					if( top + see.getHeight() - 5 + movemestep < basesize && top + movemestep > 0){
+					if( top + see.getHeight() - 5 + movemestep < sizebaseheight && top + movemestep > 0){
 						here.setMargins(left, top, 0, 0);
 					}
 					see.setLayoutParams(here);
@@ -2289,7 +2296,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 			infobox = (ScrollView) getView("ScrollView");
 			RelativeLayout.LayoutParams l = getRelativeLayout(-2, -2);
 			l.setMargins((int) (basesize * .2f), (int) (basesize * .1f), (int) (basesize * .2f), (int) (basesize * .1f));
-			l.addRule(RelativeLayout.CENTER_IN_PARENT);
+			l.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 			infobox.setLayoutParams(l);
 			infobox.setBackgroundResource(R.drawable.d);
 			infobox.setScrollBarStyle(ScrollView.SCROLLBARS_INSIDE_INSET);
@@ -3344,7 +3351,7 @@ if(1==1){
 					br.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, -1);
 					br.addRule(RelativeLayout.RIGHT_OF, adei.getId());
 				}else{
-					br.addRule(RelativeLayout.CENTER_IN_PARENT, -1);
+					br.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, -1);
 					br.addRule(RelativeLayout.ALIGN_PARENT_TOP, -1);
 				}
 				adbox.setLayoutParams(br);
@@ -3979,12 +3986,13 @@ if(1==1){
 				board = (RelativeLayout) getView("RelativeLayout");
 //CENTER_IN_PARENT
 				RelativeLayout.LayoutParams br = getRelativeLayout(-2, -2);
-				br.addRule(RelativeLayout.CENTER_IN_PARENT, -1);
+				br.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, -1);
 				br.addRule(RelativeLayout.ALIGN_PARENT_TOP, -1);
 				board.setLayoutParams(br);
 				board.setBackgroundColor(Color.argb(100, 10, 10, 10));
 				board.setKeepScreenOn(true);
 				bm.addView(board);
+				
 //*
 board.setOnTouchListener(new OnTouchListener(){
 
@@ -4028,7 +4036,7 @@ Log.i("ok","SENSOR ONLINE");
 				sm.registerListener(or, sm.getDefaultSensor(SensorManager.SENSOR_ORIENTATION) , SensorManager.SENSOR_DELAY_GAME );
 			}
 
-			controlPad();
+		//	controlPad();
 			changeLevel( level + 1 );
 		}
 
@@ -4388,7 +4396,7 @@ zoomHere(4);
 				mpad.setLayoutParams(dpadrl);
 				mpad.setVisibility(View.VISIBLE);
 
-				bm.addView(mpad);
+			//	bm.addView(mpad);
 
 			}
 
@@ -4408,15 +4416,16 @@ zoomHere(4);
 					double pt = us[myn].top + us[myn].see.getHeight()/2;
 					double ploc = Math.sqrt( (pl * pl) + (pt * pt) );
 
-					if( 15f > (cloc > ploc?(cloc-ploc):(ploc-cloc)) ){
+					if( 5f > (cloc > ploc?(cloc-ploc):(ploc-cloc)) ){
 
 					//if (us[myn].left > coinl[coinn]
 					//		&& us[myn].left + us[myn].see.getWidth() < coinl[coinn] + 100
 					//		&& us[myn].top > coint[coinn]
 					//		&& (us[myn].top + us[myn].see.getHeight()) < coint[coinn] + 100
 					//		&& coini[coinn].getVisibility() == View.VISIBLE) {
-						Log.i("ok", "LEVEL " + level + " " + coinn);
+						//Log.i("ok", "LEVEL " + level + " " + coinn);
 
+						Toast.makeText(ctx,"wonder here",1880);
 						if(pk[mGame.level] != null){
 						coini[coinn].clearAnimation();
 						coini[coinn].setVisibility(View.GONE);
@@ -4425,12 +4434,12 @@ zoomHere(4);
 
 						// dropCoin
 
-						
+					//	dropCoin.sendEmptyMessageDelayed(2,23);
 					}
 
 //zoomHere(5);
 //Toast
-Toast.makeText(ctx,"Huray "+myn+" " +us[myn].left + "\nTODO: music, boom\nMan you're good.\n\n" + mGame.level ,1880).show();
+//Toast.makeText(ctx,"Huray "+myn+" " +us[myn].left + "\nTODO: music, boom\nMan you're good.\n\n" + mGame.level ,1880).show();
 
 						mGame.changeLevel( mGame.level + 1 );
 						
@@ -4608,7 +4617,7 @@ public void dropCoin( int left, int top, int right, int bottom) {
 	h8.addAnimation(h9);
 	}
 	h8.setStartOffset(120 * coinn);
-	coin.startAnimation(h8);
+//	coin.startAnimation(h8);
 
 	//drawRect
 	if(coinp[coinn] == null){
@@ -4628,6 +4637,11 @@ public void dropCoin( int left, int top, int right, int bottom) {
 		public void handleMessage(Message mg){
 
 		int coinn = mg.what;
+		Bundle bv = mg.getData();
+		if(bv != null){
+		if(bv.getInt("coinn",-1) != -1){
+			coinn = bv.getInt("coinn");
+		}}
 		coinc[coinn].drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
 
 		
@@ -4668,19 +4682,19 @@ public void dropCoin( int left, int top, int right, int bottom) {
 
 
 		if(coini[coinn] != null && coini[coinn].getVisibility() == View.VISIBLE){
-			coinh.sendEmptyMessageDelayed(coinn,75);
+		
 
 			
-			coinr[coinn].setMargins( coinl[coinn], coint[coinn] , 0, 0);
-			if( coinrl[coinn] == LEFT ){
-				coinl[coinn] -= runx.nextInt(34);
+			coinr[coinn].setMargins( coinl[coinn], coint[coinn] + 7, 0, 0);
+			if( coinrl[coinn] == RIGHT ){
+				coinl[coinn] -= (12+runx.nextInt(14));
 			}else{
-				coinl[coinn] += runx.nextInt(34);
+				coinl[coinn] += (12+runx.nextInt(14));
 			}
 			if( cointb[coinn] == DOWN ){
-				coint[coinn] += runx.nextInt(24);
+				coint[coinn] += (12+runx.nextInt(14));
 			}else{
-				coint[coinn] -= runx.nextInt(24);
+				coint[coinn] -= (12+runx.nextInt(14));
 			}
 //			coinl[coinn] += runx.nextInt(14) - runx.nextInt(18);
 //			coint[coinn] += runx.nextInt(2) - runx.nextInt(2);
@@ -4692,16 +4706,17 @@ public void dropCoin( int left, int top, int right, int bottom) {
 
 					if( coinn < coinl.length && coinn < coinb.length && level > 0 && level < bnk.length
 
-						&& coinl[coinn] > 0+55 && coinl[coinn] < bnk[level].getWidth() - coini[coinn].getWidth() - 55
+						&& coinl[coinn] > 0+55 && coinl[coinn] < sizebasewidth - coini[coinn].getWidth() - 55
 
-						&& coint[coinn] > 0+115 && coint[coinn] + coinb[coinn].getHeight() + 115 < basesize
+						&& coint[coinn] > 0+115 && coint[coinn] + coinb[coinn].getHeight() + 115 < sizebaseheight
 						){
 						//&& coint[coinn] > 0 && coint[coinn] + coinb[coinn].getHeight() < bm.getHeight()/2 
 				
 						coini[coinn].setLayoutParams(coinr[coinn]);
 					}else{
-						if( coinl[coinn] > 0+55 && coinl[coinn] < bnk[level].getWidth() - coini[coinn].getWidth() - 55 ){
-							if(cointb[coinn] == DOWN){cointb[coinn] = UP;}else{cointb[coinn] = DOWN;}
+						if( coinl[coinn] > 0+55 && coinl[coinn] < sizebasewidth - coini[coinn].getWidth() - 55 ){
+							if( coint[coinn] < sizebasewidth - coini[coinn].getWidth() - 55 && coint[coinn] > 55+0){}else{
+							if(cointb[coinn] == DOWN){cointb[coinn] = UP;}else{cointb[coinn] = DOWN;}}
 						}else{
 							if(coinrl[coinn] == LEFT){coinrl[coinn] = RIGHT;}else{coinrl[coinn] = LEFT;}
 						}
@@ -4709,6 +4724,10 @@ public void dropCoin( int left, int top, int right, int bottom) {
 					}
 
 					coini[coinn].postInvalidate();
+			//		ink.postInvalidate();
+			Message mr = new Message();Bundle gb = new Bundle();
+			gb.putInt("coinn",coinn);mr.setData(gb);
+					coinh.sendMessageDelayed(mr,75);
 				}
 			}
 
@@ -4773,10 +4792,10 @@ Toast.makeText(ctx, level + " :" + basesize+"<-- " + bm.getWidth() ,1880).show()
 
 					pk[nextlevel] = (RelativeLayout) getView("RelativeLayout");
 try {
-					bnk[nextlevel] = Bitmap.createBitmap(basesize, (int)(basesize), Bitmap.Config.ARGB_8888);
+					bnk[nextlevel] = Bitmap.createBitmap(sizebasewidth, (int)(sizebaseheight), Bitmap.Config.ARGB_8888);
 }catch(OutOfMemoryError i9f){
 try {
-					bnk[nextlevel] = Bitmap.createBitmap(basesize, (int)(basesize), Bitmap.Config.ARGB_4444);
+					bnk[nextlevel] = Bitmap.createBitmap(sizebasewidth, (int)(sizebaseheight), Bitmap.Config.ARGB_4444);
 }catch(OutOfMemoryError i9e){
 	i9e.printStackTrace();
 }
@@ -4836,11 +4855,11 @@ try {
 Toast.makeText(ctx, level + " Player "+mycoin+"  :" + basesize,1880).show();
 
 try {
-					nnk = Bitmap.createBitmap(basesize, basesize - 16, Bitmap.Config.ARGB_8888);
+					nnk = Bitmap.createBitmap(sizebasewidth, sizebaseheight - 16, Bitmap.Config.ARGB_8888);
 }catch (OutOfMemoryError e9){
 
 try {
-					nnk = Bitmap.createBitmap(basesize, basesize - 16, Bitmap.Config.ARGB_4444);
+					nnk = Bitmap.createBitmap(sizebasewidth, sizebaseheight - 16, Bitmap.Config.ARGB_4444);
 }catch (OutOfMemoryError e9b){
 	e9b.printStackTrace();
 }
@@ -4981,7 +5000,7 @@ try {
 						xboard.removeView(pk[level]);
 						board.removeView(pk[level]);
 						RelativeLayout.LayoutParams br = getRelativeLayout(-2, -2);
-						br.addRule(RelativeLayout.CENTER_IN_PARENT, -1);
+						br.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, -1);
 						//br.addRule(RelativeLayout.ALIGN_PARENT_TOP, -1);
 						pk[level].setLayoutParams(br);
 
@@ -4994,7 +5013,7 @@ try {
 					{
 
 						try {
-						bnk2 = Bitmap.createBitmap(basesize, basesize, Bitmap.Config.ARGB_8888);
+						bnk2 = Bitmap.createBitmap(sizebasewidth, sizebaseheight, Bitmap.Config.ARGB_8888);
 						cnk2 = new Canvas(bnk2);
 
 						ink2 = (ImageView) getView("ImageView");
@@ -5504,8 +5523,8 @@ try {
 								getMainLooper());
 
 
-						us[n].screenwidth = basesize;
-						us[n].screenheight = basesize;
+						us[n].screenwidth = sizebasewidth;
+						us[n].screenheight = sizebaseheight;
 						us[n].atlevel = level;
 
 						us[n].color = my9[runx.nextInt(my9.length - 1)];
@@ -5514,6 +5533,7 @@ try {
 
 
 						us[n].jump();
+					//	us[n].see.postInvalidate();
 					}
 
 
@@ -5551,9 +5571,9 @@ if (level < 4) {
 					ImageView ju = (ImageView) getView("ImageView");
 					RelativeLayout.LayoutParams br = getRelativeLayout(-2, -2);
 					//br.setMargins(0, (int) (basesize - runx.nextInt( ((int)(basesize/21)) ) * 21 ), 0, 0);
-					int where = runx.nextInt( basesize/21 );
+					int where = runx.nextInt( sizebaseheight/21 );
 
-					br.setMargins(0, (int) (basesize - where * 21 ), 0, 0);
+					br.setMargins(0, (int) (sizebaseheight - where * 21 ), 0, 0);
 					ju.setLayoutParams(br);
 					ju.setScaleType(ScaleType.MATRIX);
 					ju.setImageBitmap(jb);
