@@ -2100,7 +2100,7 @@ if(pl > mGame.bnk[mGame.level].getWidth() - mGame.bnk[mGame.level].getWidth() * 
 				||
 				(
 					movemeip > 0 && movemeip < mGame.pnk[mGame.level].length && mGame.pnk[mGame.level][movemeip] != 0 
-					&& (!moveinmud && !injump && (pathat != DOWN && pathat != UP ) && top+see.getHeight()-5 < sizebaseheight )
+					&& (!moveinmud && !injump && (pathat != DOWN && pathat != UP ) && top+see.getHeight()-25 < sizebaseheight )
 				)
 			 ) {
 				//&& (!moveinmud && !injump && (pathat != DOWN && pathat != UP ) && top+see.getHeight()-5 < mGame.bm.getHeight()/2 )
@@ -3552,9 +3552,9 @@ if(1==1){
 		RelativeLayout.LayoutParams dpadrl;
 		RelativeLayout mpad;
 
-// Rotate AnimationSet
-public void rotateHere(){
-						AnimationSet dz = new AnimationSet(true);
+		// Rotate AnimationSet
+		public void rotateHere(){
+					AnimationSet dz = new AnimationSet(true);
 
 						{
 							Animation d1 = new RotateAnimation(45f, 45f, Animation.RELATIVE_TO_PARENT, .5f, Animation.RELATIVE_TO_PARENT, .5f);
@@ -3566,7 +3566,7 @@ public void rotateHere(){
 							d1.setDuration(1880);
 							d1.setRepeatCount(-1);
 	//						dd1.setRepeatMode(h9.RESTART);
-	d1.setRepeatMode(d1.REVERSE);
+							d1.setRepeatMode(d1.REVERSE);
 							// d1.setFillBefore(true);
 							// d1.setFillAfter(true);
 							dz.addAnimation(d1);
@@ -3576,7 +3576,7 @@ public void rotateHere(){
 						dz.setFillAfter(true);
 						meteor.startAnimation(dz);
 						// board
-}
+		}
 
 
 int zoomat = 0;
@@ -3778,16 +3778,19 @@ board.clearAnimation();
 		public void onAccuracyChanged(Sensor arg0, int arg1) {
 
 		}
-
+float[] values;
+		float valence =0;
 		public void onSensorChanged(SensorEvent event) {
 			if(smooth > SystemClock.uptimeMillis() ){return;}
 			if(smoothfresh){
 				lastvalues = null;
 				smoothfresh = false;
 			}
-			smooth = SystemClock.uptimeMillis() + 70;//bdl.getInt("sensorspeed",250);
-			float[] values = event.values;
-			float valence = 0;
+			smooth = SystemClock.uptimeMillis() + 75;//bdl.getInt("sensorspeed",250);
+		//	float[]
+			values = event.values;
+		//	float 
+			valence = 0;
 
 
 			if(lastvalues == null){
@@ -3816,12 +3819,12 @@ board.clearAnimation();
 					if(landscape == 1){
 //Log.i("ok","path a");
 						if(values[b] < 0 && values[b] < -1.5f){ 
-							if(values[b] < -3){bid.sendEmptyMessageDelayed(RIGHT,25);} 
+							if(values[b] < -2){bid.sendEmptyMessageDelayed(RIGHT,75);} 
 							if(values[b] < -4){bid.sendEmptyMessageDelayed(RIGHT,125);} 
 							bid.sendEmptyMessage(RIGHT); }
 	
 						if(values[b] > 0 && values[b] > 1.5f){
-							if(values[b] > 3){bid.sendEmptyMessageDelayed(LEFT,25);} 
+							if(values[b] > 2){bid.sendEmptyMessageDelayed(LEFT,75);} 
 							if(values[b] > 4){bid.sendEmptyMessageDelayed(LEFT,125);} 
 							bid.sendEmptyMessage(LEFT); }
 
@@ -3832,12 +3835,12 @@ board.clearAnimation();
 						values[b] *= -1;
 
 						if(values[b] < 0 && values[b] < -1.5f){ 
-							if(values[b] < -3){bid.sendEmptyMessageDelayed(LEFT,25);} 
+							if(values[b] < -2){bid.sendEmptyMessageDelayed(LEFT,75);} 
 							if(values[b] < -4){bid.sendEmptyMessageDelayed(LEFT,125);} 
 							bid.sendEmptyMessage(LEFT); }
 	
 						if(values[b] > 0 && values[b] > 1.5f){
-							if(values[b] > 3){bid.sendEmptyMessageDelayed(RIGHT,25);} 
+							if(values[b] > 2){bid.sendEmptyMessageDelayed(RIGHT,75);} 
 							if(values[b] > 4){bid.sendEmptyMessageDelayed(RIGHT,125);} 
 							bid.sendEmptyMessage(RIGHT); }
 					}
@@ -3855,14 +3858,14 @@ board.clearAnimation();
 					}
 					valence = (lastvalues[b]>values[b]?lastvalues[b]-values[b]:values[b]-lastvalues[b]);
 
-					if(lastvalues[b] > values[b] && valence > 4.0f){ 
+					if(lastvalues[b] > values[b] && valence > 1.5){ 
 					//values[b] < -4f && values[b] > -9f)
-						if(valence > 6){bid.sendEmptyMessageDelayed(DOWN,25);} 
+					//	if(valence > 4){bid.sendEmptyMessageDelayed(DOWN,125);} 
 						//if(valence > 6){bid.sendEmptyMessageDelayed(DOWN,125);} 
 						bid.sendEmptyMessage(DOWN); 
 						smooth = SystemClock.uptimeMillis() + 170;
 						smoothfresh = true;
-					}else if(lastvalues[b] < values[b] && valence > 2.0f){ bid.sendEmptyMessage(JUMPUP); smoothfresh = true; }
+					}else if(lastvalues[b] < values[b] && valence > 1.5f){ bid.sendEmptyMessage(JUMPUP); smoothfresh = true; }
 
 					lastvalues[b] = values[b];
 
@@ -3989,7 +3992,7 @@ if(1==1){
 				br.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, -1);
 				br.addRule(RelativeLayout.ALIGN_PARENT_TOP, -1);
 				board.setLayoutParams(br);
-				board.setBackgroundColor(Color.argb(100, 10, 10, 10));
+				board.setBackgroundColor(Color.argb(250, 0, 0, 0));
 				board.setKeepScreenOn(true);
 				bm.addView(board);
 				
@@ -3998,7 +4001,7 @@ board.setOnTouchListener(new OnTouchListener(){
 
 	public boolean onTouch(View b, MotionEvent a) {
 		if ( a.getAction() == a.ACTION_DOWN) {
-			Toast.makeText(ctx,"Show Player "+myn+" Stats Here " +us[myn].left+" : "+us[myn].see.getLeft(),1880).show();
+		//	Toast.makeText(ctx,"Show Player "+myn+" Stats Here " +us[myn].left+" : "+us[myn].see.getRight(),1880).show();
 			//us[myn].
 			bid.sendEmptyMessage(JUMPUP);
 
@@ -4072,7 +4075,10 @@ Log.i("ok","SENSOR ONLINE");
 			}
 
 			if(level >= 0 && setlevel >= 0 && setlevel != level && pk[setlevel] != null ){
-
+				
+Log.i("ok","level ===========================");
+				
+				
 				pk[level].removeView(us[myn].see);
 
 				//pk[setlevel].addView(us[myn].see);
@@ -4089,11 +4095,11 @@ Log.i("ok","SENSOR ONLINE");
 				{
 					AnimationSet dz = new AnimationSet(true);
 					{
-						Animation d1 = new ScaleAnimation((float) (.4f - setlevel/10) , 1f, (float) (.4f - setlevel/10), 1f,
+						Animation d1 = new ScaleAnimation((float) (.4f) , 1f, (float) (.4f), 1f,
 								Animation.RELATIVE_TO_PARENT,
-								(runx.nextInt(100) * .1f),
+								(.5f),
 								Animation.RELATIVE_TO_PARENT,
-								(runx.nextInt(100) * .1f));
+								(.5f));
 						d1.setInterpolator(AnimationUtils.loadInterpolator(
 								ctx, android.R.anim.linear_interpolator));
 						d1.setZAdjustment(10);
@@ -4153,6 +4159,7 @@ Log.i("ok","SENSOR ONLINE");
 
 			}else{
 
+				Log.i("ok","level new ===========================");
 				if(level >= 0 && pk[level] != null){
 
 					cnk[level].drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
@@ -4501,12 +4508,13 @@ public void handleMessage(Message mg){
 					juc.drawLine(jub.getWidth() / 2 - 111, jub.getHeight() / 2 - 11, jub.getWidth() / 2 + 105, jub.getHeight() / 2 - 11, jup);
 					// dropCoin
 
+					/*
 					for(int ki = 0; ki < pulsemerow.length; ki++){
 						if(pulsemerow[ki] == null){
 							break;
 						}
 						pulsemerow[ki].setImageBitmap(jb);
-					}
+					}//*/
 }
 };
 
@@ -4715,10 +4723,15 @@ public void dropCoin( int left, int top, int right, int bottom) {
 						coini[coinn].setLayoutParams(coinr[coinn]);
 					}else{
 						if( coinl[coinn] > 0+55 && coinl[coinn] < sizebasewidth - coini[coinn].getWidth() - 55 ){
-							if( coint[coinn] < sizebasewidth - coini[coinn].getWidth() - 55 && coint[coinn] > 55+0){}else{
+							if( coint[coinn] < sizebaseheight - coini[coinn].getHeight() - 55 && coint[coinn] > 55+0){
+
+								coini[coinn].setLayoutParams(coinr[coinn]);
+							}else{
+								coini[coinn].setLayoutParams(coinr[coinn]);
 							if(cointb[coinn] == DOWN){cointb[coinn] = UP;}else{cointb[coinn] = DOWN;}}
 						}else{
 							if(coinrl[coinn] == LEFT){coinrl[coinn] = RIGHT;}else{coinrl[coinn] = LEFT;}
+							coini[coinn].setLayoutParams(coinr[coinn]);
 						}
 
 					}
@@ -4727,7 +4740,7 @@ public void dropCoin( int left, int top, int right, int bottom) {
 			//		ink.postInvalidate();
 			Message mr = new Message();Bundle gb = new Bundle();
 			gb.putInt("coinn",coinn);mr.setData(gb);
-					coinh.sendMessageDelayed(mr,75);
+					coinh.sendMessageDelayed(mr,1000/32);
 				}
 			}
 
@@ -4741,7 +4754,7 @@ public void dropCoin( int left, int top, int right, int bottom) {
 
 
 	// dropCoin
-	ImageView[] pulsemerow = new ImageView[15];
+//	ImageView[] pulsemerow = new ImageView[15];
 
 
 	class levelSet extends AsyncTask<Void, Void, Void> {
@@ -4967,7 +4980,7 @@ try {
 
 						RectF rect = new RectF();
 						p9.setColor(my9a[runx.nextInt(my9a.length - 1)]);
-						p9.setStrokeWidth(18f);
+						p9.setStrokeWidth(8f);
 						p9.setAntiAlias(true);
 						p9.setStyle(Style.STROKE);
 
@@ -4979,6 +4992,15 @@ try {
 								(int) (14),
 								(int) (bnk[level].getWidth() - 14),
 								(int) (bnk[level].getHeight() -14));
+								
+
+						cnk[level].drawRoundRect(rect, 12, 12, p9);
+						p9.setColor(Color.BLACK);
+						rect.set(
+							(int) (15),
+							(int) (15),
+							(int) (bnk[level].getWidth() - 13),
+							(int) (bnk[level].getHeight() -13));
 						cnk[level].drawRoundRect(rect, 12, 12, p9);
 
 						p9.setColor(Color.argb(150,190,190,190));//my9[runx.nextInt(my9.length - 1)]);
@@ -5593,10 +5615,10 @@ if (level < 4) {
 						h8.addAnimation(h9);
 					}
 					h8.setStartOffset(level * 820);
-					ju.startAnimation(h8);
+				//	ju.startAnimation(h8);
 
 					//dropCoin
-					pulsemerow[level] = ju;
+				//	pulsemerow[level] = ju;
 				}
 
 				if (us[myn] != null && level < bnk.length && level >= 0) {
